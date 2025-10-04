@@ -96,9 +96,9 @@ password_entry = Entry(width=21)
 password_entry.grid(row=3, column=1,columnspan=2)
 
 # Buttons
-generate_password_button = Button(text="Generate Password", command=password_generate)
+generate_password_button = Button(text="Generate Password", command=password_generate,font=(FONT,10,"normal"))
 generate_password_button.grid(row=3, column=2,columnspan=2)
-add_button = Button(text="Add", width=36, command=password_save)
+add_button = Button(text="Add", width=36, command=password_save,font=(FONT,10,"normal"))
 add_button.grid(row=4, column=1, columnspan=2)
 
 # Bind the Enter/Return key to save the password. This will call
