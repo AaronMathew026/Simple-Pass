@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 FONT = "Bahnschrift"
+file_path = "saved_logins.txt"
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- ##
 import random
@@ -38,14 +39,21 @@ def password_save(event=None):
     website = website_entry.get()
     email = email_entry.get()
     password = password_entry.get()
+
     if messagebox.askokcancel(title=website, message=f"These are the details entered: \nEmail: {email} \nPassword: {password} \nIs it ok to save?"):
         format = f"{website}|{email}|{password}\n"
         
         if website == "" or password == "" or email == "":
             messagebox.showerror(title="Oops", message="Please don't leave any fields empty!")
             return
-        
-        with open(file = "saved_logins.txt",mode="a") as f:
+
+        try:
+            with open(file=file_path, mode="x") as f:
+                print(f"File created: {file_path}")
+        except FileExistsError:
+            print(f"File already exists: {file_path}")
+            pass
+        with open(file=file_path, mode="a") as f:
             f.write(format)
         print(website, email, password)
     else:
